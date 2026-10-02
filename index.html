@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alexandra Voroshilova</title>
+    <meta name="description" content="Platform Engineer &bull; Never stop creating &amp; learning">
+
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="Alexandra Voroshilova">
+    <meta property="og:description" content="Platform Engineer &bull; Never stop creating &amp; learning">
+
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;800&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <main>
+        <h1>Alexandra Voroshilova</h1>
+        <p class="tagline">Platform Engineer &bull; Never stop creating &amp; learning</p>
+
+        <nav class="links" aria-label="Profile links">
+            <a href="https://www.goodreads.com/user/show/204724771-alexandra-v" aria-label="Goodreads" title="Goodreads">
+                <i class="bi bi-book" aria-hidden="true"></i>
+            </a>
+            <a href="https://github.com/alexvoro" aria-label="GitHub" title="GitHub">
+                <i class="bi bi-github" aria-hidden="true"></i>
+            </a>
+            <a href="https://linkedin.com/in/alexandra-voroshilova-19922747" aria-label="LinkedIn" title="LinkedIn">
+                <i class="bi bi-linkedin" aria-hidden="true"></i>
+            </a>
+            <a href="CV.pdf" aria-label="Download CV" title="Download CV">
+                <i class="bi bi-file-earmark-person" aria-hidden="true"></i>
+            </a>
+            <a href="mailto:alexandra.voro.mail@gmail.com" aria-label="Email" title="Email">
+                <i class="bi bi-envelope" aria-hidden="true"></i>
+            </a>
+        </nav>
+    </main>
+
+    <button id="theme-toggle" type="button" aria-label="Toggle colour theme">
+        <i class="bi bi-circle-half" aria-hidden="true"></i>
+    </button>
+
+    <script>
+        const toggle = document.getElementById('theme-toggle');
+        const stored = localStorage.getItem('theme');
+        if (stored) document.documentElement.dataset.theme = stored;
+        toggle.addEventListener('click', () => {
+            const current = document.documentElement.dataset.theme
+                ?? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.dataset.theme = next;
+            localStorage.setItem('theme', next);
+        });
+    </script>
+</body>
+
+</html>

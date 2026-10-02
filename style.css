@@ -1,0 +1,175 @@
+:root {
+    color-scheme: light dark;
+    --bg: #0f1115;
+    --fg: #e8e8e8;
+    --muted: rgba(232, 232, 232, 0.65);
+    --veil: rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme="light"] {
+    --bg: #fafafa;
+    --fg: #f7fbff;
+    --muted: rgba(247, 251, 255, 0.85);
+    --veil: rgba(0, 0, 0, 0.25);
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+        --bg: #fafafa;
+        --fg: #f7fbff;
+        --muted: rgba(247, 251, 255, 0.85);
+        --veil: rgba(0, 0, 0, 0.25);
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    isolation: isolate;
+    min-height: 100svh;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    text-align: center;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+body::before {
+    z-index: -2;
+    width: 135%;
+    background: url("mountain-desert.jpg") center 45% / cover no-repeat;
+    animation: mountain-pan 30s ease-in-out infinite alternate;
+}
+
+body::after {
+    z-index: -1;
+    background: var(--veil);
+    transition: background 0.3s ease;
+}
+
+main {
+    min-width: 0;
+    max-width: 100%;
+    font-family: "Source Sans 3", sans-serif;
+    animation: fade-up 0.6s ease both;
+}
+
+h1 {
+    margin: 0 0 0.5rem;
+    color: #f7fbff;
+    font-size: 4.5rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.05;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.tagline {
+    margin: 0 0 2.5rem;
+    color: var(--muted);
+    font-size: 1.1rem;
+    font-weight: 300;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+.links a {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: transparent;
+    color: inherit;
+    font-size: 1.6rem;
+    line-height: 1;
+    opacity: 0.6;
+    text-decoration: none;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.links a:hover,
+.links a:focus-visible {
+    opacity: 1;
+    background-color: color-mix(in srgb, var(--bg) 50%, transparent);
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--fg);
+    font-size: 1.15rem;
+    line-height: 1;
+    opacity: 0.45;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+#theme-toggle:hover,
+#theme-toggle:focus-visible {
+    opacity: 1;
+}
+
+:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+}
+
+@keyframes mountain-pan {
+    to {
+        transform: translateX(-25.925926%);
+    }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.25rem;
+    }
+
+    .tagline {
+        font-size: 0.95rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
